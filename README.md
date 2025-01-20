@@ -1,9 +1,9 @@
-# postajaxify v1.0.0
+# postajaxify v1.0.1
 
 The jQuery plugin to "postajaxify"  WordPress post queries with filters enhances user experience by allowing dynamic, real-time filtering of WordPress posts without reloading the page. By integrating seamlessly with the WordPress backend, it enables users to apply various filters (e.g., categories, tags, custom taxonomies) and instantly update the displayed posts through AJAX requests. This reduces page load times and provides a smooth, interactive browsing experience. The plugin is customizable, offering support for both default and custom post types, and ensures compatibility with popular page builders and themes, making it a versatile solution for any WordPress site aiming to improve content discovery.
 
 ## Version
-1.0.0
+1.0.1
 
 ## Contirbutor 
 [@vishalpadhariya](https://vishalpadhariya.github.io)
@@ -18,6 +18,7 @@ MIT
 
 - `ajaxurl` (string): The URL to use for AJAX calls.
 - `action` (string): The AJAX action to trigger.
+- `posttype` (string): The post type to filter.
 - `type` (string): The event type to trigger the AJAX call (`onChange` or `onSubmit`).
 - `callbacks` (object): Callback functions to trigger at different stages of the AJAX call.
 
@@ -33,7 +34,7 @@ MIT
 ### Example 1: Initialize with `onChange` event type
 
 ```js
-$('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'onChange', {
+$('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'post', 'onChange', {
    beforeSend: function () {
      console.log('Before sending AJAX request...');
   },
@@ -52,7 +53,7 @@ $('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'onChange', {
 ### Example 2: Initialize with `onSubmit` event type
 
 ```js
-$('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'onSubmit', {
+$('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'post', 'onSubmit', {
    beforeSend: function () {
      console.log('Before sending AJAX request...');
   },

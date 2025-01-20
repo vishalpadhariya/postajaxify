@@ -1,21 +1,22 @@
 /**
- * postajaxify v1.0.0
+ * postajaxify v1.0.1
  * 
  * A jQuery plugin to AJAXify WordPress post queries with filters.
  * 
- * @version 1.0.0
+ * @version 1.0.1
  * @link https://github.com/vishalpadhariya/postajaxify
  * @license MIT
  * 
  * @param {string} ajaxurl The URL to use for AJAX calls.
  * @param {string} action The AJAX action to trigger.
+ * @param {string} psottype The post type to filter.
  * @param {string} type The event type to trigger the AJAX call ('onChange' or 'onSubmit').
  * @param {object} callbacks Callback functions to trigger at different stages of the AJAX call.
  * @returns {object} The jQuery object for chaining.
  * 
  * @example
  * // Initialize the plugin on a form element with onChange event type and default callbacks only for beforeSend and afterSend events.
- * $('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'onChange', {
+ * $('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'post', 'onChange', {
  *    beforeSend: function () {
  *      console.log('Before sending AJAX request...');
  *   },
@@ -32,7 +33,7 @@
  * 
  * @example
  * // Initialize the plugin on a form element with onSubmit event type and custom callbacks only for beforeSend and onSuccess events 
- * $('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'onSubmit', {
+ * $('#filters-form').postajaxify(ajaxurl, 'filter_posts', 'post', 'onSubmit', {
  *    beforeSend: function () {
  *      console.log('Before sending AJAX request...');
  *   },
@@ -50,7 +51,7 @@
  */
 
 (function ($) {
-    $.fn.postajaxify = function (ajaxurl, action, type, callbacks) {
+    $.fn.postajaxify = function (ajaxurl, action, psottype, type, callbacks) {
         // Plugin initialization
         this.each(function () {
             var $form = $(this);
@@ -144,6 +145,7 @@
                 // Prepare data for AJAX
                 var ajaxData = {
                     action: action,
+                    psottype: psottype,
                     taxonomyFilters: taxonomyFilters,
                     metaFilters: metaFilters,
                     textFilters: textFilters,
